@@ -420,3 +420,132 @@
 .node {
   cursor: move;
 }
+
+.node.selected {
+  outline: 2px solid #2196F3;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   CONNECTIONS (SVG LINES)
+   ============================================ */
+
+.connections-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.connections-svg path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.connection-group {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.connection-group:hover path:nth-of-type(2) {
+  stroke: #2196F3;
+  stroke-width: 3;
+}
+
+.point {
+  pointer-events: auto;
+  cursor: crosshair;
+}
+
+.point.active {
+  background: #2196F3;
+  box-shadow: 0 0 12px rgba(33, 150, 243, 0.7);
+}
+
+/* ============================================
+   DATA PACKETS (FLOW SIMULATION)
+   ============================================ */
+
+.data-packet {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  background: #2196F3;
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(33, 150, 243, 0.8);
+  pointer-events: none;
+  z-index: 6;
+  animation: packetPulse 0.5s infinite;
+}
+
+@keyframes packetPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* ============================================
+   CANVAS TOOLBAR
+   ============================================ */
+
+.btn-toolbar {
+  padding: 6px 14px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  color: #333;
+}
+
+.btn-toolbar:hover {
+  background: #f5f5f5;
+}
+
+.btn-icon {
+  width: 30px;
+  padding: 6px;
+  text-align: center;
+}
+
+/* ============================================
+   SHORTCUTS TABLE
+   ============================================ */
+
+.shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+}
+
+.shortcuts-table td {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #333;
+}
+
+.shortcuts-table kbd {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+}
+
+@media (max-width: 768px) {
+  .canvas-stats {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
