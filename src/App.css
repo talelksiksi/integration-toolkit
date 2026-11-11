@@ -1,21 +1,7 @@
 /**
- * App.css
- *
- * Global styles for Integration Toolkit
+ * App.css - shell for the Integration Toolkit.
+ * Global tokens, fonts and base styles live in brand.css.
  */
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
 .App {
   width: 100%;

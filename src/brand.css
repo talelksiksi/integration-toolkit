@@ -1,0 +1,127 @@
+/* ==========================================================================
+   CICTNA RDC brand tokens - taken from cictnardc.net so the demos read as
+   part of the same family. Light by default, dark via prefers-color-scheme
+   (same approach as the main site).
+   ========================================================================== */
+
+:root {
+  --fog: #eef2f1;
+  --mist: #f8faf9;
+  --ink: #1f2e2f;
+  --stone: #5b6b6a;
+  --rule: #d4dddb;
+
+  --sea: #3d6d78;
+  --sea-deep: #2c5560;
+  --sea-soft: rgba(61, 109, 120, 0.11);
+  --pine: #2f5a46;
+  --pine-soft: rgba(47, 90, 70, 0.12);
+  --dawn: #e7a982;
+  --dawn-soft: rgba(231, 169, 130, 0.22);
+
+  /* Not in the site's palette (it has no alarm colour); a muted terracotta
+     that sits comfortably next to sea / pine / dawn. */
+  --err: #b4503f;
+  --err-soft: rgba(180, 80, 63, 0.12);
+
+  --on-accent: #ffffff;
+  --on-dawn: #1f2e2f;
+
+  /* system-type colours for the node palette (muted, brand-adjacent) */
+  --sys-wms: #3d6d78;
+  --sys-plc: #2f5a46;
+  --sys-api: #a85d30;
+  --sys-database: #6b5a85;
+  --sys-kafka: #b4503f;
+  --sys-rest: #4a7f9c;
+
+  --shadow: 0 22px 44px -26px rgba(31, 46, 47, 0.35);
+  --glass: rgba(255, 255, 255, 0.62);
+  --header: rgba(238, 242, 241, 0.78);
+
+  /* closing-band gradient used for the page header */
+  --deep-a: #21414a;
+  --deep-b: #2d5a5d;
+  --deep-ink: #e9f0ef;
+  --deep-stone: #b3c6c4;
+  --deep-rule: rgba(255, 255, 255, 0.14);
+
+  --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fog: #121a1c;
+    --mist: #1a2427;
+    --ink: #e3ebea;
+    --stone: #9db0ae;
+    --rule: #2a3739;
+
+    --sea: #86b8c1;
+    --sea-deep: #a8cdd4;
+    --sea-soft: rgba(134, 184, 193, 0.12);
+    --pine: #86bea2;
+    --pine-soft: rgba(134, 190, 162, 0.12);
+    --dawn: #e8a97f;
+    --dawn-soft: rgba(232, 169, 127, 0.16);
+
+    --err: #e58b78;
+    --err-soft: rgba(229, 139, 120, 0.14);
+
+    --on-accent: #0f181a;
+
+    --sys-wms: #86b8c1;
+    --sys-plc: #86bea2;
+    --sys-api: #e8a97f;
+    --sys-database: #b4a3d1;
+    --sys-kafka: #e58b78;
+    --sys-rest: #8fc0d9;
+
+    --shadow: 0 22px 44px -26px rgba(0, 0, 0, 0.7);
+    --glass: rgba(26, 36, 39, 0.66);
+    --header: rgba(18, 26, 28, 0.78);
+
+    --deep-a: #0f1d21;
+    --deep-b: #173034;
+    --deep-ink: #e3ebea;
+    --deep-stone: #9db0ae;
+
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--fog);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sea);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

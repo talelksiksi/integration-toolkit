@@ -16,10 +16,20 @@
 import React, { useState, useEffect } from 'react';
 import ConnectionModal from './ConnectionModal';
 import CodeExportModal from './CodeExportModal';
+import SystemIcon from './SystemIcon';
+import BrandLogo from '../BrandLogo';
 import '../styles/IntegrationBuilder.css';
 
 const NODE_WIDTH = 120;
 const NODE_HEADER_CENTER_Y = 30;
+
+// Monotonic ids for nodes and connections. (Date.now() collides when two
+// things are created within the same millisecond, which breaks React keys.)
+let idSequence = 0;
+const nextId = () => {
+  idSequence += 1;
+  return idSequence;
+};
 
 function IntegrationBuilder() {
   const [nodes, setNodes] = useState([]);
@@ -35,12 +45,13 @@ function IntegrationBuilder() {
   const [animatingPackets, setAnimatingPackets] = useState([]);
 
   const systemTypes = [
-    { id: 'wms', name: 'WMS', icon: '📦', color: '#2196F3', description: 'Warehouse Management System' },
-    { id: 'plc', name: 'PLC', icon: '⚙️', color: '#4CAF50', description: 'Programmable Logic Controller' },
-    { id: 'api', name: 'API', icon: '🔗', color: '#FF9800', description: 'REST/HTTP API' },
-    { id: 'database', name: 'Database', icon: '💾', color: '#9C27B0', description: 'PostgreSQL / SQL Database' },
-    { id: 'kafka', name: 'Kafka', icon: '📨', color: '#F44336', description: 'Message Stream / Kafka' },
-    { id: 'rest', name: 'REST', icon: '🌐', color: '#00BCD4', description: 'REST Service' }
+    // Colours are CSS variables (defined in brand.css) so they follow light/dark mode.
+    { id: 'wms', name: 'WMS', color: 'var(--sys-wms)', description: 'Warehouse Management System' },
+    { id: 'plc', name: 'PLC', color: 'var(--sys-plc)', description: 'Programmable Logic Controller' },
+    { id: 'api', name: 'API', color: 'var(--sys-api)', description: 'REST/HTTP API' },
+    { id: 'database', name: 'Database', color: 'var(--sys-database)', description: 'PostgreSQL / SQL Database' },
+    { id: 'kafka', name: 'Kafka', color: 'var(--sys-kafka)', description: 'Message Stream / Kafka' },
+    { id: 'rest', name: 'REST', color: 'var(--sys-rest)', description: 'REST Service' }
   ];
 
   // ============= PALETTE DRAG =============
@@ -72,7 +83,7 @@ function IntegrationBuilder() {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    const newNode = { id: Date.now(), system, x, y };
+    const newNode = { id: nextId(), system, x, y };
     setNodes((prev) => [...prev, newNode]);
     console.log(`[IntegrationBuilder] Node created: ${system.name} at (${x}, ${y})`);
   };
@@ -155,7 +166,7 @@ function IntegrationBuilder() {
     }
 
     const newConnection = {
-      id: Date.now(),
+      id: nextId(),
       from: drawingConnection.from,
       to: nodeId,
       dataType: 'json',
@@ -256,6 +267,14 @@ function IntegrationBuilder() {
     <div className="integration-builder">
       {/* Left Sidebar: System Palette */}
       <aside className="palette">
+        <div className="palette-brand">
+          <BrandLogo className="mark" />
+          <div>
+            <span className="eyebrow">CICTNA RDC</span>
+            <strong>Integration Toolkit</strong>
+          </div>
+        </div>
+
         <div className="palette-header">
           <h2>Systems</h2>
           <p className="palette-subtitle">Drag to canvas</p>
@@ -271,14 +290,14 @@ function IntegrationBuilder() {
               style={{ borderLeftColor: system.color, cursor: 'grab' }}
               title={system.description}
             >
-              <span className="palette-icon">{system.icon}</span>
+              <span className="palette-icon"><SystemIcon id={system.id} /></span>
               <span className="palette-name">{system.name}</span>
             </div>
           ))}
         </div>
 
         <div className="palette-info">
-          <p>💡 Drag a system to the canvas, then click its output → another node's input to connect them.</p>
+          <p>Drag a system to the canvas, then click its output → another node's input to connect them.</p>
         </div>
       </aside>
 
@@ -311,7 +330,7 @@ function IntegrationBuilder() {
         {/* Empty State */}
         {nodes.length === 0 && (
           <div className="canvas-empty">
-            <div className="empty-icon">🎯</div>
+            <BrandLogo className="empty-mark" />
             <p>Drag systems from the left to build your workflow</p>
           </div>
         )}
@@ -339,13 +358,13 @@ function IntegrationBuilder() {
                     fill="none"
                   />
                   <path
+                    className="conn-line"
                     d={`M ${x1} ${y1} C ${x1 + 50} ${y1}, ${x2 - 50} ${y2}, ${x2} ${y2}`}
-                    stroke="#666"
                     strokeWidth="2"
                     fill="none"
                     strokeLinecap="round"
                   />
-                  <circle cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="6" fill="white" stroke="#666" strokeWidth="2" />
+                  <circle className="conn-handle" cx={(x1 + x2) / 2} cy={(y1 + y2) / 2} r="6" strokeWidth="2" />
                 </g>
               );
             })}
@@ -354,7 +373,7 @@ function IntegrationBuilder() {
             {drawingConnection && nodes.find((n) => n.id === drawingConnection.from) && (
               <path
                 d={`M ${nodes.find((n) => n.id === drawingConnection.from).x + NODE_WIDTH} ${nodes.find((n) => n.id === drawingConnection.from).y + NODE_HEADER_CENTER_Y} L ${mousePos.x} ${mousePos.y}`}
-                stroke="#2196F3"
+                className="conn-drawing"
                 strokeWidth="2"
                 strokeDasharray="5,5"
                 fill="none"
@@ -393,7 +412,7 @@ function IntegrationBuilder() {
             >
               {/* Node Header */}
               <div className="node-header" style={{ backgroundColor: node.system.color }}>
-                <span className="node-icon">{node.system.icon}</span>
+                <span className="node-icon"><SystemIcon id={node.system.id} /></span>
                 <button
                   className="node-delete"
                   onClick={() => handleDeleteNode(node.id)}
