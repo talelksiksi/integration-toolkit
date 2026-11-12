@@ -5,7 +5,7 @@ data, stress-test the plan with simulated traffic and outages, get an instant
 review with one-click fixes, then export a written spec and starter code, or
 send the plan to CICTNA RDC.
 
-**Live demo:** https://integration-toolkit-dner.vercel.app
+**Live demo:** https://integration-toolkit-eight.vercel.app
 
 ## What a visitor does
 
