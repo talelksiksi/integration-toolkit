@@ -10,7 +10,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { makeT, detectLang } from './i18n/strings';
 import { TEMPLATES } from './model/templates';
 import { review, applyFix } from './model/analysis';
-import { FREQUENCIES, SYSTEMS, defaultConnection } from './model/catalog';
+import { FREQUENCIES, defaultConnection } from './model/catalog';
 import { encodePlan, decodePlan } from './model/share';
 import Canvas from './components/Canvas';
 import Palette from './components/Palette';
@@ -311,7 +311,7 @@ export default function App() {
           updateNode={updateNode} removeNode={removeNode} updateConn={updateConn} removeConn={removeConn}
           offline={offline} down={down} toggleOffline={toggleOffline} toggleDown={toggleDown}
           stats={stats} totals={totals} rev={rev} openReview={openReview} setConnecting={setConnecting}
-          running={running} resetStats={() => { setStats({}); packets.current = []; }} systemsMeta={SYSTEMS}
+          running={running} resetStats={() => { setStats({}); packets.current = []; }}
         />
       </div>
 

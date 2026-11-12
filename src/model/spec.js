@@ -3,8 +3,6 @@
  * its review, as Markdown (to download) and HTML (to print).
  */
 
-import { FREQUENCIES } from './catalog';
-
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 export function buildSpec(plan, rev, t, lang, link) {
@@ -84,5 +82,5 @@ ${rev.good.map((g) => `<li><span class="sev good">${esc(t('sev_good'))}</span>: 
 <h2>4. ${esc(L.next)}</h2><ol>${L.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
 <footer>${esc(L.by)}</footer></body></html>`;
 
-  return { md, html, freqSeconds: (c) => FREQUENCIES[c.frequency].seconds };
+  return { md, html };
 }

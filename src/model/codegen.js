@@ -7,7 +7,7 @@
  * a starting point to review, not a finished product.
  */
 
-import { SYSTEMS, FREQUENCIES } from './catalog';
+import { FREQUENCIES } from './catalog';
 
 const slug = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const env = (s) => slug(s).replace(/-/g, '_').toUpperCase();
@@ -339,6 +339,3 @@ export function generateAll(plan) {
     .map((c) => ({ conn: c.id, ...generateLink(c, byId[c.from], byId[c.to]) }));
 }
 
-export function systemLayer(type) {
-  return SYSTEMS[type]?.layer;
-}
