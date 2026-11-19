@@ -46,8 +46,8 @@
   --deep-stone: #b3c6c4;
   --deep-rule: rgba(255, 255, 255, 0.14);
 
-  --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font: 'Archivo', 'CI Arabic', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: 'JetBrains Mono', 'CI Arabic', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -9,9 +9,13 @@ export function buildSpec(plan, rev, t, lang, link) {
   const byId = Object.fromEntries(plan.nodes.map((n) => [n.id, n]));
   const conns = plan.connections.filter((c) => byId[c.from] && byId[c.to]);
   const date = new Date().toLocaleDateString(lang, { year: 'numeric', month: 'long', day: 'numeric' });
-  const yes = lang === 'fr' ? 'oui' : 'yes';
-  const no = lang === 'fr' ? 'non' : 'no';
-  const L = lang === 'fr'
+  const yes = lang === 'fr' ? 'oui' : lang === 'ar' ? 'نعم' : 'yes';
+  const no = lang === 'fr' ? 'non' : lang === 'ar' ? 'لا' : 'no';
+  const AR = { title: 'مواصفات الربط', date: 'التاريخ', sys: 'الأنظمة', ifs: 'الروابط', rev: 'المراجعة', n: 'رقم', role: 'الدور', score: 'التقييم', next: 'الخطوات التالية',
+    cols: ['من', 'إلى', 'البيانات', 'البروتوكول', 'الطريقة', 'التكرار', 'حفظ ثم إعادة إرسال', 'تنبيه', 'مصادقة'],
+    steps: ['مراجعة مسارات البيانات وأحجامها مع فرق العمل وتقنية المعلومات.', 'الحصول على صلاحيات اختبار لكل نظام (بيانات الدخول والعناوين والبيئات).', 'تطوير كل رابط واختباره على بيانات حقيقية، ثم الانتقال إليه.', 'إعداد المراقبة والتنبيهات قبل التشغيل الفعلي.'],
+    link: 'الخطة التفاعلية', by: 'أُعدّت باستخدام Integration Toolkit من CICTNA RDC · cictnardc.net' };
+  const L = lang === 'ar' ? AR : lang === 'fr'
     ? { title: 'Spécification d’intégration', date: 'Date', sys: 'Systèmes', ifs: 'Interfaces', rev: 'Revue', n: 'N°', role: 'Rôle', score: 'Score', next: 'Prochaines étapes',
         cols: ['De', 'Vers', 'Données', 'Protocole', 'Mode', 'Fréquence', 'Stockage et relance', 'Alerte', 'Auth.'],
         steps: ['Valider les flux et les volumes avec les équipes métier et IT.', 'Obtenir les accès de test à chaque système (identifiants, adresses, environnements).', 'Développer et tester chaque interface sur des données réelles, puis basculer.', 'Mettre en place la supervision et les alertes avant la mise en production.'],
@@ -65,7 +69,7 @@ export function buildSpec(plan, rev, t, lang, link) {
   ].join('\n');
 
   const htmlTable = (head, rows) => `<table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((v) => `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
-  const html = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><title>${esc(L.title)}: ${esc(plan.name)}</title>
+  const html = `<!doctype html><html lang="${lang}" dir="${lang === 'ar' ? 'rtl' : 'ltr'}"><head><meta charset="utf-8"><title>${esc(L.title)}: ${esc(plan.name)}</title>
 <style>body{font:14px/1.5 Archivo,system-ui,sans-serif;color:#1f2e2f;max-width:980px;margin:32px auto;padding:0 24px}
 h1{font-size:24px;margin:0 0 6px}h2{font-size:17px;margin:28px 0 10px;border-bottom:2px solid #3d6d78;padding-bottom:4px}
 table{border-collapse:collapse;width:100%;font-size:12.5px}th,td{border:1px solid #d4dddb;padding:6px 8px;text-align:left;vertical-align:top}

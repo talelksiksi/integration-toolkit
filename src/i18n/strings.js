@@ -1,5 +1,5 @@
 /**
- * strings.js - every word the toolkit shows, in English and French.
+ * strings.js - every word the toolkit shows, in English, French and Arabic.
  * Values are strings or functions of their parameters.
  */
 
@@ -290,7 +290,158 @@ const fr = {
   layerOther: 'Autre',
 };
 
-const STRINGS = { en, fr };
+const ar = {
+  appName: 'Integration Toolkit',
+  appTag: 'من CICTNA RDC',
+  // Welcome
+  welcomeKicker: 'أداة تفاعلية لتخطيط ربط الأنظمة',
+  welcomeTitle: 'شاهد كيف يجب أن تتواصل أنظمتك قبل أن يكتب أحد سطراً من الكود.',
+  welcomeLead:
+    'الطلبات والمخزون وبيانات الآلات تنتقل بين نظام ERP ونظام المستودع وأجهزة PLC والشركاء. وإذا انقطع رابط واحد ضاعت الطلبات واختلّ المخزون. ارسم مسارات بياناتك هنا، واكسرها عن قصد، ثم خذ معك خطة واضحة.',
+  how1t: 'ارسم', how1: 'اختر سيناريو جاهزاً أو ضع أنظمتك واربط بينها.',
+  how2t: 'اختبر', how2: 'اضغط تشغيل، ثم اقطع رابطاً أو أوقف نظاماً، وشاهد ما الذي يضيع.',
+  how3t: 'أصلح وصدّر', how3: 'احصل على مراجعة فورية وإصلاحات بنقرة واحدة، ثم مواصفات مكتوبة وكوداً للبدء.',
+  pickScenario: 'ابدأ من سيناريو حقيقي',
+  startBlank: 'ابدأ بلوحة فارغة',
+  openLink: 'تابع الخطة التي وصلتك',
+  simulatedNote: 'كل شيء يعمل داخل متصفحك على حركة بيانات افتراضية، ولا يُرسل أي شيء إلا إذا اخترت أن ترسل لنا خطتك.',
+  // Scenarios
+  scWarehouse: 'مسار الطلبات في المستودع',
+  scWarehouseD: 'من المتجر الإلكتروني إلى ERP ثم نظام المستودع والسيور وشركات الشحن. سبعة روابط وبعض نقاط الضعف المخفية.',
+  scPlant: 'بيانات المصنع حتى الإدارة',
+  scPlantD: 'أجهزة PLC ونظام SCADA تغذّي قاعدة بيانات تاريخية، ولوحات متابعة مباشرة، وتقارير ERP كل ليلة.',
+  scAsrs: 'نظام تخزين آلي',
+  scAsrsD: 'نظام مستودع يقود برنامج التحكم في المخزن وأجهزة PLC الخاصة به، والتأكيدات تعود إليه.',
+  untitled: 'خطة الربط الخاصة بي',
+  // Toolbar
+  run: 'تشغيل', pause: 'إيقاف مؤقت', reset: 'تصفير العدادات',
+  review: 'المراجعة', export: 'تصدير', share: 'مشاركة', help: 'مساعدة', addSystem: 'أضف نظاماً',
+  scenarios: 'السيناريوهات',
+  linkCopied: 'تم نسخ الرابط. كل من يفتحه يرى هذه الخطة بالضبط.',
+  linkCopyFail: 'انسخ هذا الرابط:',
+  // Palette
+  paletteTitle: 'الأنظمة',
+  paletteHint: 'انقر أو اسحب إلى اللوحة',
+  layer_business: 'أنظمة الإدارة', layer_floor: 'أرض المصنع', layer_glue: 'طبقة الربط', layer_data: 'البيانات والأشخاص والشركاء',
+  // System names + one-liners
+  sys_erp: 'ERP', sysd_erp: 'SAP أو Dynamics أو Odoo: الطلبات والمالية والمخزون الرسمي',
+  sys_wms: 'نظام المستودع', sysd_wms: 'إدارة المستودع: المواقع والتجهيز والشحن',
+  sys_mes: 'MES', sysd_mes: 'إدارة التصنيع: أوامر العمل والجودة',
+  sys_shop: 'متجر إلكتروني', sysd_shop: 'Shopify أو Magento أو بوابة للشركات',
+  sys_plc: 'PLC', sysd_plc: 'وحدات تحكم Siemens و Allen-Bradley و Beckhoff',
+  sys_scada: 'SCADA', sysd_scada: 'Wonderware أو Ignition أو WinCC',
+  sys_controller: 'برنامج تحكم آلي', sysd_controller: 'برنامج يقود مخزناً آلياً أو آلة فرز',
+  sys_edge: 'بوابة طرفية', sysd_edge: 'تجمع بيانات المصنع بجانب الآلات',
+  sys_middleware: 'طبقة الربط', sysd_middleware: 'تترجم الرسائل وتضعها في طابور وتعيد المحاولة بين الأنظمة',
+  sys_broker: 'وسيط رسائل', sysd_broker: 'Kafka أو MQTT: مكان واحد تنشر فيه كل الأنظمة',
+  sys_database: 'قاعدة بيانات', sysd_database: 'PostgreSQL أو SQL Server أو قاعدة بيانات تاريخية',
+  sys_dashboard: 'لوحة متابعة', sysd_dashboard: 'Power BI أو Grafana أو شاشة المشغّل',
+  sys_carrier: 'شركة شحن', sysd_carrier: 'DHL أو UPS أو واجهة برمجية لشريك نقل',
+  sys_file: 'تبادل ملفات', sysd_file: 'ملفات CSV أو Excel عبر SFTP',
+  sys_email: 'تقارير بالبريد', sysd_email: 'تقارير يومية وتنبيهات بالبريد الإلكتروني',
+  // Protocols
+  p_rest: 'REST API', p_webhook: 'Webhook', p_idoc: 'SAP IDoc', p_opcua: 'OPC UA', p_modbus: 'Modbus TCP', p_s7: 'Siemens S7',
+  p_socket: 'رسائل TCP', p_mqtt: 'MQTT', p_kafka: 'Kafka', p_sql: 'SQL', p_sftp: 'CSV عبر SFTP', p_email: 'البريد الإلكتروني',
+  // Data
+  d_orders: 'الطلبات', d_confirmations: 'التأكيدات', d_stock: 'كميات المخزون', d_shipments: 'الشحنات والملصقات', d_masterdata: 'بيانات المنتجات الأساسية',
+  d_telemetry: 'قيم الآلات والتشغيل', d_alarms: 'الإنذارات', d_reports: 'التقارير', d_commands: 'أوامر الآلات',
+  // Frequencies
+  f_event: 'فور حدوثها', f_s1: 'كل ثانية', f_s5: 'كل 5 ثوانٍ', f_m1: 'كل دقيقة', f_m15: 'كل 15 دقيقة', f_h1: 'كل ساعة', f_nightly: 'مرة كل ليلة',
+  // Inspector
+  overview: 'نظرة عامة على الخطة',
+  overviewEmpty: 'أضف أنظمة من القائمة، ثم اربط بينها: انقر على النقطة في طرف النظام المُرسِل، ثم على النظام الذي يجب أن يستلم البيانات.',
+  systems: 'أنظمة', links: 'روابط',
+  delivered: 'وصلت', waiting: 'في الانتظار بأمان', lost: 'ضاعت',
+  impactTitle: 'ماذا يعني هذا للعمل',
+  impactNone: 'لم يضِع شيء حتى الآن. اضغط تشغيل، ثم اقطع رابطاً لترى ما يحدث.',
+  impact_orders: (n, to) => `${n} طلب لم يصل إلى ${to}. سينتظر العملاء طروداً لن تأتي.`,
+  impact_confirmations: (n, to) => `${n} تأكيد لم يصل إلى ${to}. ما زال يظن أن البضاعة على الرفوف.`,
+  impact_stock: (n, to) => `${n} تحديث للمخزون لم يصل إلى ${to}. يبيع الآن أو يخطط بمخزون غير موجود.`,
+  impact_shipments: (n, to) => `${n} شحنة لم تصل إلى ${to}. لا ملصقات، ولا استلام، وعملاء غاضبون.`,
+  impact_masterdata: (n, to) => `${n} تحديث لبيانات المنتجات لم يصل إلى ${to}. أسعار أو مقاسات خاطئة في الأنظمة التالية.`,
+  impact_telemetry: (n, to) => `${n} قراءة من الآلات لم تصل إلى ${to}. فجوات في البيانات وتقارير لا تتطابق أرقامها.`,
+  impact_alarms: (n, to) => `${n} إنذار لم يصل إلى ${to}. لم يعلم أحد أن شيئاً قد تعطّل.`,
+  impact_reports: (n, to) => `${n} تقرير لم يصل إلى ${to}. قرارات تُتخذ على أرقام قديمة.`,
+  impact_commands: (n, to) => `${n} أمر لم يصل إلى ${to}. الآلات متوقفة والطلبات تنتظر.`,
+  savedTitle: (n) => `${n} رسالة انتظرت في الطابور ووصلت بعد عودة الرابط.`,
+  system: 'النظام', name: 'الاسم', type: 'النوع', notes: 'ملاحظات',
+  online: 'يعمل', offline: 'متوقف',
+  takeOffline: 'أوقف هذا النظام', bringOnline: 'أعده إلى العمل',
+  offlineHint: 'يحاكي صيانة أو عطلاً أو انقطاعاً في الشبكة.',
+  deleteSystem: 'احذف النظام',
+  connectFrom: 'اربطه بنظام آخر',
+  connectHint: 'انقر الآن على النظام الذي يجب أن يستلم البيانات.',
+  cancel: 'إلغاء',
+  link: 'الرابط', from: 'من', to: 'إلى',
+  carries: 'ينقل', protocol: 'البروتوكول', how: 'الطريقة', freq: 'التكرار',
+  mode_push: 'المُرسِل يدفع البيانات', mode_poll: 'المستلم يسحبها',
+  buffered: 'حفظ ثم إعادة إرسال', bufferedHint: 'يحفظ الرسائل في طابور ويعيد المحاولة حتى تصل.',
+  alerts: 'تنبيه عند العطل', alertsHint: 'يصل بريد إلكتروني إلى شخص ما عندما يتوقف هذا الرابط.',
+  auth: 'بمصادقة', authHint: 'كل طلب يحمل مفتاحاً أو رمزاً، فلا يستطيع الغرباء إرسال بيانات.',
+  cutLink: 'اقطع هذا الرابط', restoreLink: 'أعد هذا الرابط',
+  cutHint: 'يحاكي انقطاع الشبكة أو نظاماً توقف عن الرد.',
+  deleteLink: 'احذف الرابط',
+  stats: (d, q, l) => `${d} وصلت · ${q} في الانتظار · ${l} ضاعت`,
+  // Review
+  reviewTitle: 'مراجعة الربط',
+  reviewIntro: 'فحص تلقائي لخطتك مقارنةً بما يتعطل عادةً في المشاريع الحقيقية. أصلح أي بند وشاهد التقييم يتحسن.',
+  reviewEmpty: 'اربط نظامين على الأقل للحصول على مراجعة.',
+  score: 'التقييم', fix: 'أصلحه', fixAll: 'طبّق كل الإصلاحات',
+  sev_critical: 'حرج', sev_warning: 'يستحق الإصلاح', sev_info: 'للعلم', sev_good: 'منفّذ بشكل صحيح',
+  grade: (s) => (s >= 90 ? 'جاهز للتشغيل الفعلي' : s >= 70 ? 'متين مع بعض الثغرات' : s >= 45 ? 'محفوف بالمخاطر' : 'هشّ'),
+  f_lostOnOutage: ({ from, to, data }) => `إذا توقف ${to} ضاعت ${data} القادمة من ${from}.`,
+  f_lostOnOutageD: 'لا شيء يحتفظ بالرسائل حين يكون المستلم غير متاح. خاصية الحفظ ثم إعادة الإرسال تضعها في طابور وتسلّمها عند عودته.',
+  f_slowSync: ({ from, to, data, freq }) => `${data} من ${from} لا تصل إلى ${to} إلا ${freq}.`,
+  f_slowSyncD: 'البيانات المستعجلة تنتظر بين كل دفعة وأخرى. الإرسال عند الحدث يرسل كل تغيير فور حدوثه.',
+  f_directField: ({ from, to }) => `${from} يتواصل مع ${to} مباشرة.`,
+  f_directFieldD: 'وحدات التحكم وأنظمة الإدارة تتكلم لغات مختلفة وتتعطل بطرق مختلفة. بوابة طرفية بينهما تترجم وتحفظ مؤقتاً وتحمي الطرفين.',
+  f_silent: ({ from, to }) => `لن يعلم أحد إذا تعطّل الرابط من ${from} إلى ${to}.`,
+  f_silentD: 'الروابط تتعطل بصمت، ومن دون تنبيه تكون أول إشارة شكوى من عميل.',
+  f_noAuth: ({ from, to }) => `الرابط من ${from} إلى ${to} يخرج من شبكتكم دون مصادقة.`,
+  f_noAuthD: 'أي شخص يعثر على العنوان يستطيع إرسال البيانات أو قراءتها. استعملوا مفاتيح API أو رموز OAuth.',
+  f_dataGaps: ({ from, to }) => `تضيع قراءات ${from} كلما تعذّر الوصول إلى ${to}.`,
+  f_dataGapsD: 'ذاكرة مؤقتة عند البوابة الطرفية تملأ الفجوات، فتبقى التقارير والمنحنيات كاملة.',
+  f_hub: ({ name, n }) => `لدى ${name} ${n} روابط مباشرة.`,
+  f_hubD: 'كل نظام جديد يعني رابطاً خاصاً جديداً. وسيط الرسائل يسمح لكل نظام بأن ينشر مرة واحدة ويشترك فيما يحتاجه فقط.',
+  f_twoMasters: ({ a, b, data }) => `${a} و ${b} يرسل كل منهما ${data} إلى الآخر.`,
+  f_twoMastersD: 'مصدران للحقيقة يبتعدان عن بعضهما مع الوقت. حدّدوا النظام المالك للبيانات واجعلوا المسار في اتجاه واحد.',
+  f_isolated: ({ name }) => `${name} غير مربوط بأي نظام.`,
+  f_isolatedD: 'اربطه، أو احذفه إن لم يكن جزءاً من الخطة.',
+  g_buffered: (n) => (n > 1 ? `${n} روابط حرجة تتحمل الانقطاع دون فقدان بيانات.` : 'رابط حرج واحد يتحمل الانقطاع دون فقدان بيانات.'),
+  g_event: (n) => (n > 1 ? `${n} روابط حرجة ترسل التغييرات فور حدوثها.` : 'رابط حرج واحد يرسل التغييرات فور حدوثها.'),
+  g_alerts: (n) => (n > 1 ? `${n} روابط ترسل تنبيهاً عند تعطلها.` : 'رابط واحد يرسل تنبيهاً عند تعطله.'),
+  // Export
+  exportTitle: 'صدّر خطتك',
+  tabSpec: 'مواصفات الربط', tabCode: 'كود للبدء', tabSend: 'أرسلها إلى CICTNA RDC',
+  specIntro: 'مواصفات مكتوبة لكل نظام وكل رابط، مع المراجعة. شاركها مع فريقك أو مع مورّديك.',
+  download: 'تنزيل', print: 'طباعة', copy: 'نسخ', copied: 'تم النسخ',
+  codeIntro: 'خدمة Node.js صغيرة لكل رابط: كيف تقرأ من المصدر، وتسلّم إلى الهدف، وتضع في طابور، وتعيد المحاولة، وتنبّه. نقطة بداية حقيقية للتنفيذ.',
+  codeDeps: 'التثبيت',
+  sendIntro: 'أرسل لنا هذه الخطة. سنردّ خلال يوم عمل بما كنا سنغيّره، وما يتطلبه التنفيذ، وتكلفة تقريبية.',
+  yourName: 'الاسم', yourEmail: 'البريد الإلكتروني', yourCompany: 'الشركة (اختياري)', yourMessage: 'ماذا تريدنا أن نعرف؟ (اختياري)',
+  sendBtn: 'أرسل خطتي', sending: 'جارٍ الإرسال…', sent: 'تم الإرسال. سنعود إليك خلال يوم عمل.', sendFail: 'تعذّر الإرسال. راسلنا على contact@cictnardc.net.',
+  needNameEmail: 'الرجاء كتابة اسمك وبريد إلكتروني صحيح.',
+  // Guide
+  guideRun: 'اضغط تشغيل لتشاهد البيانات وهي تنتقل بين أنظمتك.',
+  guideCut: 'الآن انقر على رابط واقطعه، أو أوقف نظاماً، وشاهد ما الذي يضيع.',
+  guideReview: 'افتح المراجعة لترى نقاط الضعف وتصلحها بنقرة واحدة.',
+  guideExport: 'راضٍ عنها؟ صدّر المواصفات والكود، أو أرسل الخطة إلينا.',
+  guideBuild: 'أضف أنظمة من القائمة واربط بينها.',
+  // Help
+  helpTitle: 'كيف تستخدم الأداة',
+  help1: 'لإضافة نظام: انقر عليه في القائمة (أو اسحبه إلى اللوحة).',
+  help2: 'لربط نظامين: انقر على النقطة في طرف النظام المُرسِل، ثم على المستلم.',
+  help3: 'انقر على أي رابط لتختار ما ينقله والبروتوكول وعدد المرات.',
+  help4: 'اضغط تشغيل، ثم اقطع رابطاً أو أوقف نظاماً، وتابع العدادات وأثر ذلك على العمل.',
+  help5: 'افتح المراجعة لترى نقاط الضعف والإصلاحات بنقرة واحدة. ومن التصدير تحصل على المواصفات والكود أو ترسل لنا الخطة.',
+  help6: 'لوحة المفاتيح: Delete يحذف المحدد، و Escape يلغي، والمسافة تشغّل أو توقف.',
+  close: 'إغلاق', demoBy: 'نسخة تجريبية من', lang: 'EN',
+  legendSafe: 'حفظ ثم إعادة إرسال', legendDirect: 'مباشر', legendCut: 'مقطوع',
+  layerOther: 'أخرى',
+};
+
+const STRINGS = { en, fr, ar };
+export const LANGS = ['en', 'fr', 'ar'];
 
 export function makeT(lang) {
   const table = STRINGS[lang] || en;
@@ -303,10 +454,13 @@ export function makeT(lang) {
 
 export function detectLang() {
   try {
+    const asked = new URLSearchParams(window.location.search).get('lang');
+    if (LANGS.includes(asked)) return asked;
     const saved = localStorage.getItem('lang');
-    if (saved === 'en' || saved === 'fr') return saved;
+    if (LANGS.includes(saved)) return saved;
   } catch (e) {
     /* storage unavailable */
   }
-  return (navigator.language || 'en').toLowerCase().startsWith('fr') ? 'fr' : 'en';
+  const nav = (navigator.language || 'en').slice(0, 2).toLowerCase();
+  return LANGS.includes(nav) ? nav : 'en';
 }

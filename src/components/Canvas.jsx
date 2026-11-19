@@ -168,7 +168,7 @@ export default function Canvas({
   const selN = selection?.kind === 'node' ? selection.id : null;
 
   return (
-    <div className="canvas-scroller" ref={scroller}>
+    <div className="canvas-scroller" ref={scroller} dir="ltr">
       <div className="world-size" style={{ width: size.w * scale, height: size.h * scale }}>
         <div
           className={`world ${connecting ? 'is-connecting' : ''}`} ref={world}
@@ -249,7 +249,7 @@ export default function Canvas({
                 onKeyDown={(e) => { if (e.key === 'Enter') setSelection({ kind: 'node', id: n.id }); }}
               >
                 <span className="node-icon"><SystemIcon id={meta.icon} /></span>
-                <span className="node-text"><b>{n.name}</b><small>{offline[n.id] ? t('offline') : t('sys_' + n.type)}</small></span>
+                <span className="node-text" dir="auto"><b dir="auto">{n.name}</b><small dir="auto">{offline[n.id] ? t('offline') : t('sys_' + n.type)}</small></span>
                 {offline[n.id] && <span className="node-off"><UiIcon id="power" className="ui-icon tiny" /></span>}
                 <span className="port in" aria-hidden="true" />
                 <span className="port out" title={t('connectFrom')} onPointerDown={(e) => onPortDown(e, n)} onPointerUp={onPortUp} />

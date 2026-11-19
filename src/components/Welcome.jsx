@@ -4,6 +4,7 @@ import React from 'react';
 import { TEMPLATES } from '../model/templates';
 import { SystemIcon, UiIcon } from './Icons';
 import BrandLogo from '../BrandLogo';
+import LangSwitch from './LangSwitch';
 
 export default function Welcome({ t, onTemplate, onBlank, shared, onShared, saved, onSaved, canClose, onClose, lang, setLang }) {
   return (
@@ -12,7 +13,7 @@ export default function Welcome({ t, onTemplate, onBlank, shared, onShared, save
         <div className="welcome-top">
           <span className="brand"><BrandLogo className="mark" /><span className="brand-text"><b>{t('appName')}</b><small>{t('appTag')}</small></span></span>
           <div className="welcome-tools">
-            <button type="button" className="btn icon lang" onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}>{t('lang')}</button>
+            <LangSwitch lang={lang} setLang={setLang} />
             {canClose && <button type="button" className="btn icon small" onClick={onClose} aria-label={t('close')}><UiIcon id="x" /></button>}
           </div>
         </div>

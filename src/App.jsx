@@ -18,6 +18,7 @@ import Inspector from './components/Inspector';
 import ReviewPanel from './components/ReviewPanel';
 import ExportModal from './components/ExportModal';
 import Welcome from './components/Welcome';
+import LangSwitch from './components/LangSwitch';
 import HelpModal from './components/HelpModal';
 import { UiIcon } from './components/Icons';
 import BrandLogo from './BrandLogo';
@@ -68,6 +69,7 @@ export default function App() {
   const langChosen = useRef(false);
   useEffect(() => {
     document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     if (!langChosen.current) { langChosen.current = true; return; }
     try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
   }, [lang]);
@@ -103,7 +105,7 @@ export default function App() {
 
   const loadTemplate = useCallback((key) => {
     const tpl = TEMPLATES[key];
-    const L = (en, fr) => (lang === 'fr' ? fr : en);
+    const L = (en, fr, ar) => (lang === 'fr' ? fr : lang === 'ar' ? (ar || en) : en);
     loadPlan({ name: t(tpl.nameKey), ...tpl.build(L) });
     setProgress({ ran: false, broke: false, reviewed: false });
   }, [lang, t, loadPlan]);
@@ -287,7 +289,7 @@ export default function App() {
           <button type="button" className="btn" disabled={!plan.nodes.length} onClick={() => setPanel('export')}><UiIcon id="export" /><span className="hide-xs">{t('export')}</span></button>
           <button type="button" className="btn icon hide-sm" disabled={!plan.nodes.length} onClick={doShare} title={t('share')} aria-label={t('share')}><UiIcon id="share" /></button>
           <button type="button" className="btn icon" onClick={() => setPanel('help')} title={t('help')} aria-label={t('help')}><UiIcon id="help" /></button>
-          <button type="button" className="btn icon lang" onClick={() => setLang((l) => (l === 'en' ? 'fr' : 'en'))} title="English / Français">{t('lang')}</button>
+          <LangSwitch lang={lang} setLang={setLang} />
         </nav>
       </header>
 
