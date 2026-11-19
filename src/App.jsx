@@ -62,8 +62,13 @@ export default function App() {
   const packets = useRef([]);
   const acc = useRef({});
 
+  // The language setting is shared with the rest of cictnardc.net, so only save it
+  // when the visitor switches here; opening the app must not overwrite a choice
+  // made elsewhere (for example Arabic, which this app does not offer).
+  const langChosen = useRef(false);
   useEffect(() => {
     document.documentElement.lang = lang;
+    if (!langChosen.current) { langChosen.current = true; return; }
     try { localStorage.setItem('lang', lang); } catch (e) { /* ignore */ }
   }, [lang]);
 
